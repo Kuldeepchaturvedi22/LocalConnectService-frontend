@@ -15,8 +15,9 @@ export default function Dashboard() {
   const [error, setError] = useState('');
 
   useEffect(() => {
+    if (active !== 'Dashboard') return;
     dashboardApi.summary().then(setSummary).catch(err => setError(err.message));
-  }, []);
+  }, [active]);
 
   function choose(item) { setActive(item); setMenuOpen(false); }
 
@@ -58,7 +59,7 @@ function DashboardHome({ summary, user, onNav }) {
     </section>
     <section className="kpi-grid">
       {cards.length ? cards.map(card => (
-        <article className="kpi" key={card.label}><span>{card.label}</span><strong>{card.value}</strong><small>{card.note}</small></article>
+        <article className="kpi" key={card.label}><span>{card.label}</span><strong>{card.value.toLocaleString()}</strong><small>{card.note}</small></article>
       )) : [1,2,3,4].map(i => <article className="kpi skeleton" key={i} />)}
     </section>
     <section className="panel">
