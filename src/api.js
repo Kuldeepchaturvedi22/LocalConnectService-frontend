@@ -23,3 +23,20 @@ export const authApi = {
 export const dashboardApi = {
   summary: () => api('/dashboard/summary')
 };
+
+export const enquiryApi = {
+  list: (page = 0) => api(`/enquiries?page=${page}`),
+  create: data => api('/enquiries', { method: 'POST', body: JSON.stringify(data) }),
+  update: (id, data) => api(`/enquiries/${id}`, { method: 'PATCH', body: JSON.stringify(data) })
+};
+
+export const companyApi = {
+  list: (page = 0) => api(`/companies?page=${page}`),
+  create: data => api('/companies', { method: 'POST', body: JSON.stringify(data) }),
+  update: (id, data) => api(`/companies/${id}`, { method: 'PATCH', body: JSON.stringify(data) })
+};
+
+export const userApi = {
+  list: (page = 0) => api(`/users?page=${page}`),
+  create: data => api('/users', { method: 'POST', body: JSON.stringify(data) })
+};
